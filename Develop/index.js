@@ -14,12 +14,28 @@ const promptREADME = () => {
         {
             type: 'input',
             name: 'name'
-            message: 'What is the name of your project?'
+            message: 'What is the name of your project?',
+            validate: nameInput => {
+                if (nameInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your name!');
+                  return false;
+                }
+              }
         },
         {
             type: 'input',
             name: 'description',
-            message: 'Provide a description of the project:'
+            message: 'Provide a description of the project:',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                  return true;
+                } else {
+                  console.log('Please enter the project description!');
+                  return false;
+                }
+              }
         },
         {
             type: 'input',
@@ -50,20 +66,46 @@ const promptREADME = () => {
         {
             type: 'input',
             name: 'github',
-            message: 'What is your GitHub username?'
+            message: 'What is your GitHub username?',
+            validate: githubInput => {
+                if (githubInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your GitHub username!');
+                  return false;
+                }
+              }
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is your email address?'
+            message: 'What is your email address?',
+            validate: emailInput => {
+                if (emailInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your email!');
+                  return false;
+                }
+              }
         },
         {
             type: 'input',
             name: 'link',
-            message: 'Enter the GitHub link to your project.'
+            message: 'Enter the GitHub link to your project.',
+            validate: linkInput => {
+                if (linkInput) {
+                  return true;
+                } else {
+                  console.log('Please enter the link to your deployed project!');
+                  return false;
+                }
+              }
         }
     ]);
 };
+
+promptUser().then(answers => console.log(answers));
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data), err => {
