@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this project
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { generate } = require('rxjs');
 const generateMarkdown = require ('./utils/generateMarkdown.js')
 // TODO: Create an array of questions for user input
 const promptREADME = () => {
@@ -13,7 +14,7 @@ const promptREADME = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'name'
+            name: 'name',
             message: 'What is the name of your project?',
             validate: nameInput => {
                 if (nameInput) {
@@ -50,7 +51,7 @@ const promptREADME = () => {
         {
             type: 'checkbox',
             name: 'license',
-            message: 'What licenses did you use for your project?'
+            message: 'What licenses did you use for your project?',
             choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense']
         },
         {
@@ -102,18 +103,22 @@ const promptREADME = () => {
                 }
               }
         }
-    ]);
+    ])
 };
 
 promptUser().then(answers => console.log(answers));
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data), err => {
-    return `
+promptREADME()
+    .then(readmeData => {
+        const pageReadme = generateMarkdown(readmeData);
 
-    `
-    
-};
+        fs.writeFile('./dist/README.md', pageReadme, err => {
+            if (err) throw new Error(err);
+
+            console.log('README created! Checkout README.md in this directory to see it!');
+        });
+    });
 
 // TODO: Create a function to initialize app
 function init() {}
