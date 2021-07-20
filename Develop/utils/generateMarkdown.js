@@ -120,7 +120,7 @@ return `# ${data.name}
     ## Link to Deployed App
     ${data.link}
 
-    ## Lisence
+    ## License
     ${renderLicenseSection(data.license)}
 `;
 }
