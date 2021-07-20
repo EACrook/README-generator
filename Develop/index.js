@@ -49,7 +49,7 @@ const promptREADME = () => {
             message: 'What is the usage information for your project?'
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'license',
             message: 'What licenses did you use for your project?',
             choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense']
